@@ -1,0 +1,40 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+#needed to allow access to service utility on ubuntu
+import os
+
+#imports Glade GTK library
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+
+#defines Handlers
+class Handler:
+    def onDestroy(self, *args):
+        Gtk.main_quit()
+    def squid_start(self, button):
+        os.system("service squid start")
+        start = builder.get_object("start")
+        start.set_text("Started")
+    def squid_stop(self, button):
+        os.system("service squid stop")
+        stop = builder.get_object("stop")
+        stop.set_text("Stopped")
+    def squid_reload(self, button):
+        os.system("service squid reload")
+        reloader = builder.get_object("reload")
+        reloader.set_text("Reloaded")
+#get glade file
+gladefile = os.path.split(__file__)[0] + '/squidcp.glade'
+
+#builds GUI for app
+builder = Gtk.Builder()
+builder.add_from_file(gladefile)
+builder.connect_signals(Handler())
+
+window = builder.get_object("squidcp")
+window.show_all()
+
+
+Gtk.main()
