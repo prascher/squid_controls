@@ -3,4 +3,5 @@
 <h2>Coming Soon</h2>
 <ul>
   <li> the ablitity to monitor the status of your squid server</li>
+  <li> an auto reset feature to reset the labels</li>
 </ul>
